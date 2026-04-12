@@ -61,8 +61,8 @@
                         </a>
                     </div>
                 @endif
-                <input type="file" name="file" accept=".apk,.png,.jpg,.jpeg,.pdf,.svg" class="ap-input" />
-                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">APK, PNG, JPG, PDF, SVG — max 50 MB. Leave empty to keep current file.</p>
+                <input type="file" name="file" class="ap-input" />
+                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">APK file</p>
             </div>
 
             <div style="display: flex; justify-content: flex-end;">
