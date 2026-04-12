@@ -113,10 +113,12 @@
             </div>
         </div>
 
-        <button type="submit" class="ap-btn">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Save Changes
-        </button>
+        <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="ap-btn">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Save Changes
+            </button>
+        </div>
     </form>
 </div>
 @endsection

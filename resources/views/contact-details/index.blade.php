@@ -52,10 +52,12 @@
                 <label class="ap-label">Info</label>
                 <textarea name="info" rows="4" class="ap-input" style="resize:none;" placeholder="Additional contact information...">{{ old('info', $selected->contactDetail?->info) }}</textarea>
             </div>
-            <button type="submit" class="ap-btn">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Update Contact
-            </button>
+            <div style="display: flex; justify-content: flex-end;">
+                <button type="submit" class="ap-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    Update Contact
+                </button>
+            </div>
         </form>
     </div>
     @endif
