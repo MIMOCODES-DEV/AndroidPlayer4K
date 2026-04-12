@@ -33,10 +33,10 @@ class ApiController extends Controller
         $product = Product::where('slug', $slug)->where('is_active', true)->first();
 
         if (! $product || ! $product->domainUrl) {
-            return response()->json(['url' => null]);
+            return response()->json(null);
         }
 
-        return response()->json(['url' => $product->domainUrl->url]);
+        return response($product->domainUrl);
     }
 
     public function contactDetail(string $slug)
@@ -44,16 +44,10 @@ class ApiController extends Controller
         $product = Product::where('slug', $slug)->where('is_active', true)->first();
 
         if (! $product || ! $product->contactDetail) {
-            return response()->json(['email' => null, 'phone' => null, 'info' => null]);
+            return response()->json(null);
         }
 
-        $contact = $product->contactDetail;
-
-        return response()->json([
-            'email' => $contact->email,
-            'phone' => $contact->phone,
-            'info'  => $contact->info,
-        ]);
+        return response()->json($product->contactDetail);
     }
 
     public function apkVersion(string $slug, string $version)
@@ -66,13 +60,9 @@ class ApiController extends Controller
 
         $ver = $product->version;
 
-        // Only return if DB version is strictly greater than what the client reports
-        if (version_compare($ver->version, $version, '>')) {
-            return response()->json([
-                'version'     => $ver->version,
-                'description' => $ver->description,
-                'file'        => $ver->file ? asset('storage/' . $ver->file) : null,
-            ]);
+        // Simple string comparison matching old code behaviour
+        if ($ver->version > $version) {
+            return response()->json($ver);
         }
 
         return response()->json([]);
