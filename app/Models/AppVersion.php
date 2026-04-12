@@ -13,6 +13,8 @@ class AppVersion extends Model
 
     protected $fillable = ['product_id', 'version', 'description', 'file'];
 
+    protected $hidden = ['product_id'];
+
     public function product()
     {
         return $this->belongsTo(Product::class);

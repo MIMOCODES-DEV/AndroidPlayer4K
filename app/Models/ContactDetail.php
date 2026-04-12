@@ -11,6 +11,8 @@ class ContactDetail extends Model
 
     protected $fillable = ['product_id', 'email', 'phone', 'info'];
 
+    protected $hidden = ['product_id'];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
