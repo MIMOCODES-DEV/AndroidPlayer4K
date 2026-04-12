@@ -55,8 +55,16 @@
 {{-- Products Table --}}
 <div class="ap-card" style="padding:0; overflow:hidden;">
     <div style="padding:20px 24px; border-bottom:1px solid var(--border);">
-        <div style="font-size:0.9375rem; font-weight:700; color:var(--text-primary);">Products List</div>
-        <div style="font-size:0.8125rem; color:var(--text-muted); margin-top:2px;">Edit any product to update its domain URL, contact details, and version.</div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <div style="font-size:0.9375rem; font-weight:700; color:var(--text-primary);">Products List</div>
+                <div style="font-size:0.8125rem; color:var(--text-muted); margin-top:2px;">Edit any product to update its domain URL, contact details, and version.</div>
+            </div>
+            <a href="{{ route('products.create') }}" class="ap-btn" style="font-size:0.8125rem; padding:8px 18px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                Add Product
+            </a>
+        </div>
     </div>
 
     <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">

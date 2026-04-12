@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('versions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->unique()->constrained('products')->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('version')->nullable();
             $table->string('description')->nullable();
             $table->string('file')->nullable();

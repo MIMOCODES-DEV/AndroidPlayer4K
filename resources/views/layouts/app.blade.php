@@ -10,7 +10,7 @@
         * { box-sizing: border-box; }
         body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
         :root {
-            --bg-body: #f5f5f9;
+            --bg-body: #fcfcfc;
             --bg-sidebar: #fff;
             --bg-card: #fff;
             --bg-input: #fff;
@@ -226,7 +226,7 @@
     <div class="flex-1 flex flex-col min-w-0" style="overflow:hidden;">
 
         {{-- Top bar --}}
-        <header class="shrink-0 flex items-center justify-between gap-3 px-4 lg:px-8 py-4" style="background:var(--bg-sidebar); border-bottom:1px solid var(--border);">
+        <header class="shrink-0 flex items-center justify-between gap-3 px-4 lg:px-8 py-6.5" style="background:var(--bg-sidebar); border-bottom:1px solid var(--border);">
             <div class="flex items-center gap-3">
                 <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg" style="color:var(--text-secondary); background:rgba(255,255,255,0.05);" aria-label="Menu">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -236,16 +236,7 @@
                     <span style="font-size:0.8125rem; color:var(--text-muted); margin-left:4px;">@yield('page-subtitle')</span>
                 @endif
             </div>
-            <div class="flex items-center gap-3">
-                <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode" style="background:var(--bg-card); border:1px solid var(--border-input); border-radius:8px; padding:7px 13px; color:var(--accent); font-weight:600; font-size:0.9rem; cursor:pointer; transition:all 0.2s;">
-                    <span id="theme-toggle-icon" style="display:inline-block; vertical-align:middle;">
-                        <svg id="theme-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.414-1.414M6.343 6.343L4.929 4.929m12.02 0l-1.414 1.414M6.343 17.657l-1.414 1.414"/></svg>
-                        <svg id="theme-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
-                    </span>
-                    <span id="theme-toggle-label">Light</span>
-                </button>
-                @yield('header-actions')
-            </div>
+            <div></div>
         </header>
 
         {{-- Flash messages --}}
@@ -270,10 +261,18 @@
         <main class="flex-1 px-4 lg:px-8 py-6" style="overflow-y:auto; overflow-x:auto;">
             @yield('content')
         </main>
-
+      
         {{-- Footer --}}
-        <footer class="shrink-0 px-4 lg:px-8 py-3" style="border-top:1px solid var(--border); font-size:0.75rem; color:var(--text-muted);">
-            © {{ date('Y') }} Copyright Created By <strong style="color:var(--text-secondary);">AndroidPlayer4K</strong>
+        <footer class="shrink-0" style="border-top:1px solid var(--border); font-size:0.75rem; color:var(--text-muted); padding: 12px 24px 8px 24px;">
+            <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+                <span>© {{ date('Y') }} Copyright Created By <strong style="color:var(--text-secondary);">AndroidPlayer4K</strong></span>
+                <button id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode" style="background:var(--bg-card); border:1px solid var(--border-input); border-radius:8px; padding:7px 13px; color:var(--accent); font-weight:600; font-size:0.9rem; cursor:pointer; transition:all 0.2s;">
+                    <span id="theme-toggle-icon" style="display:inline-block; vertical-align:middle;">
+                        <svg id="theme-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.414-1.414M6.343 6.343L4.929 4.929m12.02 0l-1.414 1.414M6.343 17.657l-1.414 1.414"/></svg>
+                        <svg id="theme-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+                    </span>
+                </button>
+            </div>
         </footer>
     </div>
 </div>
@@ -291,16 +290,16 @@
     // Theme toggle logic
     function setTheme(mode) {
         const body = document.getElementById('ap-body');
+        const sun = document.getElementById('theme-sun');
+        const moon = document.getElementById('theme-moon');
         if (mode === 'dark') {
             body.classList.add('dark-mode');
-            document.getElementById('theme-toggle-label').textContent = 'Dark';
-            document.getElementById('theme-sun').style.display = 'inline';
-            document.getElementById('theme-moon').style.display = 'none';
+            sun.style.display = 'none';
+            moon.style.display = 'inline';
         } else {
             body.classList.remove('dark-mode');
-            document.getElementById('theme-toggle-label').textContent = 'Light';
-            document.getElementById('theme-sun').style.display = 'none';
-            document.getElementById('theme-moon').style.display = 'inline';
+            sun.style.display = 'inline';
+            moon.style.display = 'none';
         }
         localStorage.setItem('ap-theme', mode);
     }
