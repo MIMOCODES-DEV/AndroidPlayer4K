@@ -35,6 +35,7 @@
         @endif
 
         <form method="POST" action="{{ route('versions.update', $selected) }}" enctype="multipart/form-data">
+            <input type="hidden" name="product_id" value="{{ $selected->id }}" />
             @csrf
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">

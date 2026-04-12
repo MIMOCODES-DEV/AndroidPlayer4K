@@ -32,7 +32,8 @@ class DomainUrlController extends Controller
             ['url' => $validated['url'] ?? null]
         );
 
-        return redirect()->route('domain-urls.index', ['product' => $product->slug])
+        $redirectProduct = $request->input('product_id', $product->slug);
+        return redirect()->route('domain-urls.index', ['product_id' => $redirectProduct])
             ->with('success', 'Domain URL updated successfully.');
     }
 }

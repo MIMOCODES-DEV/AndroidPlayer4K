@@ -35,6 +35,7 @@
         </div>
     </div>
     <form method="POST" action="{{ route('domain-urls.update', $selected) }}">
+        <input type="hidden" name="product_id" value="{{ $selected->id }}" />
         @csrf
         @method('PUT')
         <div class="mb-5">

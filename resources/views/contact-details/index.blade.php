@@ -36,6 +36,7 @@
             </div>
         </div>
         <form method="POST" action="{{ route('contact-details.update', $selected) }}">
+            <input type="hidden" name="product_id" value="{{ $selected->id }}" />
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">

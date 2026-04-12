@@ -45,7 +45,8 @@ class ContactDetailController extends Controller
             ]
         );
 
-        return redirect()->route('contact-details.index', ['product' => $product->slug])
+        $redirectProduct = $request->input('product_id', $product->slug);
+        return redirect()->route('contact-details.index', ['product_id' => $redirectProduct])
             ->with('success', 'Contact details updated successfully.');
     }
 }

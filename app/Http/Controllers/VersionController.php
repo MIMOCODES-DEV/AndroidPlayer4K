@@ -51,7 +51,8 @@ class VersionController extends Controller
             $data
         );
 
-        return redirect()->route('versions.index', ['product' => $product->slug])
+        $redirectProduct = $request->input('product_id', $product->slug);
+        return redirect()->route('versions.index', ['product_id' => $redirectProduct])
             ->with('success', 'Version updated successfully.');
     }
 }
