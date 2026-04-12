@@ -97,12 +97,13 @@
                 <div>
                     <label class="ap-label">APK / File</label>
                     @if($product->version?->file)
-                        <div class="flex items-center gap-2 mb-3" style="padding:10px 14px; border-radius:10px; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.12);">
+                        <div class="flex items-center gap-2 mb-3" style="padding:10px 14px; border-radius:10px; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.12); overflow-x:auto; max-width:100%;">
                             <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                            <span style="font-size:0.8125rem; color:var(--text-secondary);">Current:</span>
+                            <span style="font-size:0.8125rem; color:var(--text-secondary); white-space:nowrap;">Current:</span>
                             <a href="{{ asset('storage/' . $product->version->file) }}" target="_blank" class="domain-url-link"
-                               style="font-size:0.8125rem; text-decoration:none;"
-                               onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">
+                               style="font-size:0.8125rem; text-decoration:none; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; vertical-align:bottom;"
+                               onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';"
+                               title="{{ $product->version->file }}">
                                 {{ basename($product->version->file) }}
                             </a>
                         </div>

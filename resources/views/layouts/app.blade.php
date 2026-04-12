@@ -209,24 +209,16 @@
 
         </nav>
 
-        {{-- User / Logout --}}
-        <div class="px-4 py-4" style="border-top:1px solid var(--border);">
-            <div class="flex items-center gap-3">
-                <div style="width:34px; height:34px; background:rgba(105,108,255,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                    <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div style="font-size:0.8125rem; font-weight:600; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ Auth::user()->name }}</div>
-                    <div style="font-size:0.65rem; color:var(--text-muted);">Administrator</div>
-                </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" title="Logout" style="background:rgba(234,84,85,0.1); border:none; padding:6px; border-radius:8px; cursor:pointer; color:var(--danger); transition:all 0.2s;"
-                            onmouseover="this.style.background='rgba(234,84,85,0.2)';" onmouseout="this.style.background='rgba(234,84,85,0.1)';">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                    </button>
-                </form>
-            </div>
+        {{-- Logout at bottom of sidebar --}}
+        <div style="flex:1 1 0%; display:flex; flex-direction:column; justify-content:flex-end;">
+            <form method="POST" action="{{ route('logout') }}" style="width:100%; padding:1.5rem 1rem 1.5rem 1rem;">
+                @csrf
+                <button type="submit" class="nav-link" style="width:100%; background:rgba(234,84,85,0.12); color:var(--danger); border:none; display:flex; align-items:center; gap:10px; font-weight:600; justify-content:center; border-radius:12px; padding:12px 0; font-size:1rem; transition:background 0.2s; cursor:pointer;"
+                    onmouseover="this.style.background='rgba(234,84,85,0.22)'; this.style.cursor='pointer';" onmouseout="this.style.background='rgba(234,84,85,0.12)'; this.style.cursor='pointer';">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Logout
+                </button>
+            </form>
         </div>
     </aside>
 
