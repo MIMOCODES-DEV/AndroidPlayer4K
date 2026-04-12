@@ -14,9 +14,10 @@ class VersionController extends Controller
         $selected = null;
         $version = null;
 
-        if ($request->filled('product')) {
-            $selected = Product::where('slug', $request->product)->firstOrFail();
-            $version = $selected->version;
+        $selectedId = $request->filled('product_id') ? intval($request->product_id) : ($products->first()->id ?? null);
+        if ($selectedId) {
+            $selected = $products->firstWhere('id', $selectedId);
+            $version = $selected?->version;
         }
 
         return view('versions.index', compact('products', 'selected', 'version'));

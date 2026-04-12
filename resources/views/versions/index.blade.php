@@ -3,10 +3,7 @@
 @section('page-title', 'Update Version')
 @section('page-subtitle', 'Push new app releases')
 
-@php
-    $selectedId = request('product_id') ? intval(request('product_id')) : ($products->first()->id ?? null);
-    $selected = $products->firstWhere('id', $selectedId);
-@endphp
+{{-- $selected and $version come from the controller --}}
 
 @section('content')
 <div>
