@@ -84,5 +84,13 @@
         url.searchParams.set('product_id', id);
         window.location.href = url.toString();
     }
+
+    // On page load, scroll the selected tab into view (centered)
+    document.addEventListener('DOMContentLoaded', function() {
+        var selectedTab = document.querySelector('#product-tabs .tab-active');
+        if (selectedTab && selectedTab.scrollIntoView) {
+            selectedTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+    });
 </script>
 @endsection

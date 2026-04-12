@@ -165,7 +165,7 @@
 <div class="flex h-screen" style="overflow:hidden;">
 
     {{-- ─── Sidebar ───────────────────────────────────────────────────────── --}}
-    <aside id="sidebar" class="w-[260px] flex flex-col shrink-0 h-full" style="background:var(--bg-sidebar); border-right:1px solid var(--border);">
+    <aside id="sidebar" class="w-65 flex flex-col shrink-0 h-full" style="background:var(--bg-sidebar); border-right:1px solid var(--border);">
 
         {{-- Logo --}}
         <div class="px-6 py-5 flex items-center justify-between" style="border-bottom:1px solid var(--border);">
