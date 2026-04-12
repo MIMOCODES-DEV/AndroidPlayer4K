@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (Auth::check()) {
-            return redirect()->route('domain-urls.index');
+            return redirect()->route('products.index');
         }
 
         return view('auth.login');
@@ -40,7 +40,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('domain-urls.index'));
+        return redirect()->intended(route('products.index'));
     }
 
     public function logout(Request $request)
