@@ -7,9 +7,7 @@ use App\Models\Product;
 
 class ApiController extends Controller
 {
-    /**
-     * Generic endpoints for king4k (backward compat: /api/domain_Url)
-     */
+    // ...existing code...
     public function genericDomainUrl()
     {
         return $this->domainUrl('king4k');
@@ -25,9 +23,7 @@ class ApiController extends Controller
         return $this->apkVersion('king4k', $version);
     }
 
-    /**
-     * Per-product endpoints: /api/{slug}/domain_Url
-     */
+    // ...existing code...
     public function domainUrl(string $slug)
     {
         $product = Product::where('slug', $slug)->where('is_active', true)->first();

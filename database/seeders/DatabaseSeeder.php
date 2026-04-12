@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Single admin user — no registration allowed
+        // Single admin user
         User::create([
             'name'     => 'android',
             'email'    => 'androidplayer4k@gmail.com',

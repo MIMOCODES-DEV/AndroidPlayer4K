@@ -140,7 +140,7 @@ class ProductController extends Controller
             Storage::disk('public')->delete($product->version->file);
         }
 
-        $product->delete(); // cascades to domain_urls, contact_details, versions via DB
+        $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
