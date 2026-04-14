@@ -25,10 +25,13 @@ class VersionController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        ini_set('memory_limit', '256M');
+        set_time_limit(120);
+
         $validated = $request->validate([
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'max:174080'],
+            'file'        => ['nullable', 'file', 'max:204800'], // 200MB
         ]);
 
         $data = [

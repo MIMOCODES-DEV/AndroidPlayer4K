@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -32,7 +33,7 @@ class ApiController extends Controller
             return response()->json(null);
         }
 
-        return response($product->domainUrl);
+        return response()->json($product->domainUrl);
     }
 
     public function contactDetail(string $slug)
