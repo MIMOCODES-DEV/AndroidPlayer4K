@@ -28,7 +28,7 @@ Route::prefix('api')->group(function () {
 
 // ─── Protected admin routes ───────────────────────────────────────────────────
 Route::middleware('auth')->group(function () {
-    Route::get('/', fn () => redirect()->route('domain-urls.index'));
+    Route::get('/', fn () => redirect()->route('products.index'));
 
     // Products CRUD
     Route::resource('products', ProductController::class)->except(['show']);
