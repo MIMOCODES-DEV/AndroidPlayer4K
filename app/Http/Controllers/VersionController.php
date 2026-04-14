@@ -28,7 +28,7 @@ class VersionController extends Controller
         $validated = $request->validate([
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file'],
+            'file'        => ['nullable', 'file', 'max:174080'],
         ]);
 
         $data = [
@@ -43,7 +43,9 @@ class VersionController extends Controller
                 Storage::disk('public')->delete($existing->file);
             }
 
-            $data['file'] = $request->file('file')->store('versions', 'public');
+            $uploadedFile = $request->file('file');
+            $filename = \Illuminate\Support\Str::uuid() . '.' . $uploadedFile->getClientOriginalExtension();
+            $data['file'] = $uploadedFile->storeAs('versions', $filename, 'public');
         }
 
         $product->version()->updateOrCreate(

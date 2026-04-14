@@ -35,7 +35,7 @@ class ProductController extends Controller
             'info'        => ['nullable', 'string', 'max:2000'],
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:51200'],
+            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:174080'],
         ], [], [
             'slug.unique' => 'The slug has already been taken. Please choose another.'
         ]);
@@ -60,7 +60,9 @@ class ProductController extends Controller
 
         $filePath = null;
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('versions', 'public');
+            $uploadedFile = $request->file('file');
+            $filename = \Illuminate\Support\Str::uuid() . '.' . $uploadedFile->getClientOriginalExtension();
+            $filePath = $uploadedFile->storeAs('versions', $filename, 'public');
         }
 
         AppVersion::create([
@@ -91,7 +93,7 @@ class ProductController extends Controller
             'info'        => ['nullable', 'string', 'max:2000'],
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:51200'],
+            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:174080'],
         ]);
 
         $product->update([
@@ -124,7 +126,9 @@ class ProductController extends Controller
             if ($existing && $existing->file) {
                 Storage::disk('public')->delete($existing->file);
             }
-            $versionData['file'] = $request->file('file')->store('versions', 'public');
+            $uploadedFile = $request->file('file');
+            $filename = \Illuminate\Support\Str::uuid() . '.' . $uploadedFile->getClientOriginalExtension();
+            $versionData['file'] = $uploadedFile->storeAs('versions', $filename, 'public');
         }
 
         $product->version()->updateOrCreate(
