@@ -16,7 +16,7 @@
         <span style="font-size:0.8125rem; color:var(--danger);">{{ $errors->first() }}</span>
     </div>
 @endif
-<div class="flex gap-2 mb-6 overflow-x-auto" id="product-tabs">
+<div class="flex gap-2 mb-6" style="flex-wrap:wrap;" id="product-tabs">
     @foreach($products as $product)
     <button type="button" class="ap-btn-outline product-tab-btn {{ $selected && $selected->id === $product->id ? 'tab-active' : '' }}" style="min-width:140px; font-weight:600; border-width:2px; border-color:{{ $selected && $selected->id === $product->id ? 'var(--accent)' : 'var(--border-input)' }}; color:{{ $selected && $selected->id === $product->id ? 'var(--accent)' : 'var(--text-secondary)' }}; background:{{ $selected && $selected->id === $product->id ? 'rgba(37,99,235,0.08)' : 'var(--bg-card)' }};" onclick="selectProduct({{ $product->id }})">
         {{ $product->name }}
