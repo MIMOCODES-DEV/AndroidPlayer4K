@@ -109,7 +109,7 @@
                         </div>
                     @endif
                     <input type="file" name="file" accept=".apk,.png,.jpg,.jpeg,.pdf,.svg" class="ap-input" />
-                    <p style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">APK, PNG, JPG, PDF, SVG — max 50 MB. Upload to replace current file.</p>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">APK. Upload to replace current file.</p>
                 </div>
             </div>
         </div>
