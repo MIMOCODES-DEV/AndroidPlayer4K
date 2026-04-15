@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $allowedExts = ['apk', 'png', 'jpg', 'jpeg', 'pdf', 'svg'];
         $validated = $request->validate([
             'name'        => ['required', 'string', 'max:100'],
             'slug'        => ['required', 'string', 'max:100', 'alpha_dash', 'unique:products,slug'],
@@ -35,7 +36,11 @@ class ProductController extends Controller
             'info'        => ['nullable', 'string', 'max:2000'],
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:174080'],
+            'file'        => ['nullable', 'file', 'max:204800', function ($attribute, $value, $fail) use ($allowedExts) {
+                if (!in_array(strtolower($value->getClientOriginalExtension()), $allowedExts)) {
+                    $fail('The file must be of type: apk, png, jpg, jpeg, pdf, svg.');
+                }
+            }],
         ], [], [
             'slug.unique' => 'The slug has already been taken. Please choose another.'
         ]);
@@ -83,6 +88,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $allowedExts = ['apk', 'png', 'jpg', 'jpeg', 'pdf', 'svg'];
         $validated = $request->validate([
             'name'        => ['required', 'string', 'max:100'],
             'slug'        => ['required', 'string', 'max:100', 'alpha_dash', 'unique:products,slug,' . $product->id],
@@ -93,7 +99,11 @@ class ProductController extends Controller
             'info'        => ['nullable', 'string', 'max:2000'],
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:174080'],
+            'file'        => ['nullable', 'file', 'max:204800', function ($attribute, $value, $fail) use ($allowedExts) {
+                if (!in_array(strtolower($value->getClientOriginalExtension()), $allowedExts)) {
+                    $fail('The file must be of type: apk, png, jpg, jpeg, pdf, svg.');
+                }
+            }],
         ]);
 
         $product->update([

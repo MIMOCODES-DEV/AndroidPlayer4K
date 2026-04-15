@@ -28,10 +28,15 @@ class VersionController extends Controller
         ini_set('memory_limit', '256M');
         set_time_limit(120);
 
+        $allowedExts = ['apk', 'png', 'jpg', 'jpeg', 'pdf', 'svg'];
         $validated = $request->validate([
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:204800'], // 200MB
+            'file'        => ['nullable', 'file', 'max:204800', function ($attribute, $value, $fail) use ($allowedExts) {
+                if (!in_array(strtolower($value->getClientOriginalExtension()), $allowedExts)) {
+                    $fail('The file must be of type: apk, png, jpg, jpeg, pdf, svg.');
+                }
+            }], // 200MB
         ]);
 
         $data = [
