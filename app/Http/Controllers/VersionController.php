@@ -31,7 +31,7 @@ class VersionController extends Controller
         $validated = $request->validate([
             'version'     => ['nullable', 'string', 'max:50'],
             'description' => ['nullable', 'string', 'max:500'],
-            'file'        => ['nullable', 'file', 'max:204800'], // 200MB
+            'file'        => ['nullable', 'file', 'mimes:apk,png,jpg,jpeg,pdf,svg', 'max:204800'], // 200MB
         ]);
 
         $data = [
